@@ -1,0 +1,64 @@
+{% extends 'layouts/index.html' %}
+
+{% block content %}
+    <style type="text/css">
+        .post {
+            width: 80%;
+            margin-left: 10%;
+        }
+
+        .post > img {
+            width: 250px;
+            height: 200px;
+        }
+
+        .dates {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .comments {
+            margin-top: 50px;
+        }
+
+        .comment_block {
+            color: white;
+            padding: 10px;
+            margin-bottom: 20px;
+            background: #242b2e;
+
+        }
+
+        .comments_title {
+            font-size: 26px;
+            font-weight: bold;
+            margin-top: 50px;
+        }
+    </style>
+    <div class="post">
+        <img src="/media/{{ post.image }}" alt="">
+        <h1>{{ post.title }}</h1>
+        <h5>{{ post.description }}</h5>
+        <div class="dates">
+            <h6>{{ post.create_date }}</h6>
+            <h6>{{ post.modefied_date }}</h6>
+        </div>
+        <div class="comments_title">
+            <div class="comments">
+                <h1>Comments:</h1>
+                <form action="/posts/{{ post.id }}/" method="post">
+                    {% csrf_token %}
+                    {{ form }}
+                    <input type="submit" value="Add Comment">
+                </form>
+                {% for comment in comments %}
+                    <div class="comment_block">
+                        <h6>{{ comment.text }}</h6>
+                        <p>{{ comment.create_date }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
