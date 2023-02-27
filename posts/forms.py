@@ -1,7 +1,7 @@
 from django import forms
 
 
-class PostCreateForm(forms.Form):
+class  PostCreateForm(forms.Form):
     image = forms.FileField(required=False)
     title = forms.CharField(max_length=355)
     description = forms.CharField(widget=forms.Textarea)

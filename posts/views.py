@@ -76,10 +76,10 @@ def create_post_view(request):
                 image=form.cleaned_data.get('image'),
                 title=form.cleaned_data.get('title'),
                 description=form.cleaned_data.get('description'),
-                rate=form.cleaned_data.get('rate')
+                rate=form.cleaned_data.get('rate'),
 
             )
             return redirect('/posts')
-    return render(request, 'posts/create.html', context={
-        'form': form
-    })
+        return render(request, 'posts/create.html', context={
+            'form': form
+            })
